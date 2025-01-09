@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gha-python-service
+spec:
+  selector:
+    app: gha-python
+  ports:
+    - name: http
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+      type: LoadBalancer
