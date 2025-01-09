@@ -3,8 +3,8 @@ pipeline {
     environment {
         // DOCKERHUB_CREDENTIALS = 'docker-credentials'
         REGISTRY_CREDENTIALS = credentials('docker-credentials')
-        DOCKER_IMAGE = "thethymca/gha-python-image-app:v1"
-        //DOCKER_IMAGE = "thethymca/gha-python-image-app:${BUILD_NUMBER}"
+        // DOCKER_IMAGE = "thethymca/gha-python-image-app:v1"
+        DOCKER_IMAGE = "thethymca/gha-python-image-app:${BUILD_NUMBER}"
     }
     stages {
         stage('Checkout') {
