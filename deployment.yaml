@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gha-python-deployment
+  labels:
+    app: gha-python
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gha-python
+  template:
+    metadata:
+      labels:
+        app: gha-python
+    spec:
+      containers:
+      - name: gha-python-container
+        image: thethymca/python-prog:v1
+        ports:
+        - containerPort: 5000
