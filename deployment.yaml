@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: gha-python-container
-        image: thethymca/python-prog:v1
+        image: thethymca/gha-python-image-app:v1
         ports:
         - containerPort: 5000
