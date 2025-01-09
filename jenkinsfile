@@ -7,6 +7,12 @@ pipeline {
         //DOCKER_IMAGE = "thethymca/gha-python-image-app:${BUILD_NUMBER}"
     }
     stages {
+        stage('Checkout') {
+          steps {
+            sh 'echo passed'
+            git branch: 'main', url: 'https://github.com/harkaur02/gha-python-image-app.git/'
+          }
+        }
         stage('Hello') {
             steps {
                 echo 'Hello World'
@@ -15,11 +21,12 @@ pipeline {
         stage('Build and Push Docker Image') {
                 steps {
         script {
-            sh 'cd gha-python-image-app && docker build -t ${DOCKER_IMAGE} .'
+            echo pwd
+            sh 'docker build -t ${DOCKER_IMAGE} .'
             echo 'inside folder'
-            echo DOCKER_IMAGE
+            
             def dockerImage = docker.image("${DOCKER_IMAGE}")
-            docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
+            docker.withRegistry('https://index.docker.io/v1/', "docker-credentials") {
                 dockerImage.push()
             }
         }
