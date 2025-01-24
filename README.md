@@ -71,6 +71,21 @@ For Ingress Controller:
          curl -L foo.bar.com/bar -v
 
 
-     Steps to delete all the ingress-controller resources:
+     Commands to delete all the ingress-controller resources:
+	kubectl get all -n ingress-nginx
+	kubectl delete all --all -n ingress-nginx
+	kubectl get all -n ingress-nginx
+	kubectl get ingressClass
+	kubectl get ingressClass -A
+	kubectl delete ingressClass nginx
+	kubectl get ingressClass -A
+	kubectl get ValidatingWebhookConfiguration
+	kubectl delete ValidatingWebhookConfiguration ingress-nginx-admission
+	kubectl get ValidatingWebhookConfiguration
+	kubectl get all
+	kubectl get all -n yourNamespace
+	kubectl get ingress -A
+
+   	 
    
        
