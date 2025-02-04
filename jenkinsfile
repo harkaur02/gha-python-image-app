@@ -11,7 +11,7 @@ pipeline {
         stage('git-checkout') {
             steps {
                 echo 'git process strarts'
-                git branch: 'main', credentialsId: 'harkaur02-git', url: 'https://github.com/harkaur02/gha-python-image-app.git'
+                git branch: 'main', credentialsId: 'harkaur02-git-id', url: 'https://github.com/harkaur02/gha-python-image-app.git'
                 //sh 'git clone https://github.com/harkaur02/gha-python-image-app.git'
                 echo 'git clone successfully completed!'
                 sh 'pwd'
