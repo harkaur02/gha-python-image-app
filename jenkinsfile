@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        
+        stage('git-checkout') {
+            steps {
+                echo 'git process strarts'
+                git branch: 'main', credentialsId: 'harkaur02-git', url: 'https://github.com/harkaur02/gha-python-image-app.git'
+                //sh 'git clone https://github.com/harkaur02/gha-python-image-app.git'
+                echo 'git clone successfully completed!'
+                sh 'pwd'
+            }
+        }
+        
+        stage('docker-build') {
+            steps {
+                echo 'docker-build starts:'
+                sh 'docker build -t thethymca/gha-python-image-app:v1 .'
+                sh 'docker ps'
+            }
+        }
+        
+        stage('docker-run-a-container') {
+            steps {
+                echo 'docker-run starts:'
+                sh 'docker container run -idt --name app1 -p 5000:5000 thethymca/gha-python-image-app:v1'
+                sh 'docker ps'
+            }
+        }
+        
+        stage('docker-push-to-registry') {
+            steps {
+                echo 'docker-push-to-registry starts here:'
+                docker.withRegistry('https://registry.hub.docker.com/', 'docker-for-jenkins-pipeline-id') {
+                
+                }
+            }
+        }
+    }
+}
